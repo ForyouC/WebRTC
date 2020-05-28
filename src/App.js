@@ -15,7 +15,7 @@ class App extends Component {
     this.candidates = []
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
 
     this.socket = io(
       '/webrtcPeer',
@@ -64,7 +64,7 @@ class App extends Component {
       this.remoteVideoref.current.srcObject = e.stream
     }
 
-    const constraints = { video: true }
+    const constraints = { audio:false, video: true }
 
     const success = (stream) => {
       window.localStream = stream
@@ -101,7 +101,7 @@ class App extends Component {
         this.pc.setLocalDescription(sdp)
 
         this.sendToPeer('offerOrAnswer', sdp)
-      }, e => {})
+      })
   }
 
   setRemoteDescription = () => {
